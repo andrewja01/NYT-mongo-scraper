@@ -1,1 +1,1 @@
-# WSJ-mongo-scraper
+# NYT-mongo-scraper
