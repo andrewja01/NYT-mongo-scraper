@@ -32,12 +32,13 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nytdb";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
-// Routes
+// Routes   
 
 app.get("/", function(req, res) {
     res.render("index");
 });
-// GET route for scraping WSJ website
+
+// GET route for scraping NYT website
 app.get("/scrape", function (req, res) {
     axios.get("https://www.nytimes.com/").then(function(response) {
         const $ = cheerio.load(response.data);
