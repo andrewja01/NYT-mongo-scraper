@@ -25,21 +25,21 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nytdb";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nytdb"
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes   
 
 app.get("/", function(req, res) {
-    res.render("index");
+
 });
 
 // GET route for scraping NYT website
-app.get("/scrape", function (req, res) {
+app.get("/", function (req, res) {
     axios.get("https://www.nytimes.com/").then(function(response) {
         const $ = cheerio.load(response.data);
 
@@ -68,7 +68,7 @@ app.get("/scrape", function (req, res) {
                 });
         });
 
-        res.send("Scrape Complete");
+        res.render("index");;
     });
 });
 
