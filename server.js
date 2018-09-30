@@ -25,9 +25,9 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-const MONGODB_URI = process.env.heroku_czdqmb1p || "mongodb://localhost/nytdb";
-
+const MONGODB_URI = process.env.MONGOLAB_JADE_URI || "mongodb://andyj:andy123@ds119343.mlab.com:19343/heroku_czdqmb1p"
 mongoose.Promise = Promise;
+
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 //database configuration
